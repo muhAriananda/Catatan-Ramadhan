@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Catatan Ramadhan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="greeting">Assalamualaikum,</string>
+    <string name="next_prayer">Sholat selanjutnya</string>
+    <string name="imsak">Imsak</string>
+    <string name="fajr">Subuh</string>
+    <string name="dzuhur">Dzuhur</string>
+    <string name="ashar">Ashar</string>
+    <string name="magrib">Magrib</string>
+    <string name="isya">Isya</string>
+    <string name="time_prayer">05:05</string>
+    <string name="left_time">-01:01:10 memasuki Subuh</string>
+    <string name="date">25 Juli 2020</string>
+    <string name="date_hijr">5 Dhuʻl-Hijjah 1441H</string>
+</resources>
