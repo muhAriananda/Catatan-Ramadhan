@@ -14,4 +14,8 @@
     <string name="left_time">-01:01:10 memasuki Subuh</string>
     <string name="date">25 Juli 2020</string>
     <string name="date_hijr">5 Dhuʻl-Hijjah 1441H</string>
+    <string name="schedule">Jadwal</string>
+    <string name="prayer">Doa</string>
+    <string name="note">Catatan</string>
+    <string name="profile">Profil</string>
 </resources>
