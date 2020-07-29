@@ -7,21 +7,21 @@
 
     <fragment
         android:id="@+id/scheduleFragment"
-        android:name="id.buhankita.catatanramadhan.ui.fragments.shcedule.PrayerScheduleFragment"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.shcedule.PrayerScheduleFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/doaFragment"
-        android:name="id.buhankita.catatanramadhan.ui.fragments.prayer.DoaFragment"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.prayer.DoaFragment"
         android:label="fragment_doa"
         tools:layout="@layout/fragment_doa" />
     <fragment
         android:id="@+id/noteFragment"
-        android:name="id.buhankita.catatanramadhan.ui.fragments.note.NoteFragment"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="id.buhankita.catatanramadhan.ui.fragments.form.ProfileFragment"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.form.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 

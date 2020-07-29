@@ -1,4 +1,4 @@
-package id.buhankita.catatanramadhan.ui.activities
+package id.buhankita.catatanramadhan.ui.base.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
