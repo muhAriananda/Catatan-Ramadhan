@@ -2,7 +2,7 @@
     <string name="app_name">Catatan Ramadhan</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="greeting">Assalamualaikum,</string>
+    <string name="greeting">Silahkan,</string>
     <string name="next_prayer">Sholat selanjutnya</string>
     <string name="imsak">Imsak</string>
     <string name="fajr">Subuh</string>
@@ -18,4 +18,23 @@
     <string name="prayer">Doa</string>
     <string name="note">Catatan</string>
     <string name="profile">Profil</string>
+
+    <string name="rationale_location">This app needs access to your location to know where you are.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="login">Login untuk masuk</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_your_password">Forget your password?</string>
+    <string name="signin">Login</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up.</string>
+    <string name="name">Name</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign in.</string>
+    <string name="forgot_password">Forgot \nPassword</string>
+    <string name="message_forget_password">To reset your password, please enter your email, press the button and check your email to follow the instruction</string>
+    <string name="send_request">send request</string>
+
 </resources>

@@ -11,9 +11,13 @@
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/doaFragment"
-        android:name="id.buhankita.catatanramadhan.ui.base.fragments.prayer.DoaFragment"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.doa.DoaFragment"
         android:label="fragment_doa"
-        tools:layout="@layout/fragment_doa" />
+        tools:layout="@layout/fragment_doa" >
+        <action
+            android:id="@+id/action_doaFragment_to_fragmentDetailDoa"
+            app:destination="@id/fragmentDetailDoa" />
+    </fragment>
     <fragment
         android:id="@+id/noteFragment"
         android:name="id.buhankita.catatanramadhan.ui.base.fragments.note.NoteFragment"
@@ -24,5 +28,17 @@
         android:name="id.buhankita.catatanramadhan.ui.base.fragments.form.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragmentDetailDoa"
+        android:name="id.buhankita.catatanramadhan.ui.base.fragments.doa.DoaDetailFragment"
+        android:label="fragment_detail_doa"
+        tools:layout="@layout/fragment_detail_doa" >
+        <action
+            android:id="@+id/action_fragmentDetailDoa_to_doaFragment"
+            app:destination="@id/doaFragment" />
+        <argument
+            android:name="DoaItem"
+            app:argType="id.buhankita.catatanramadhan.data.model.doa.Doa" />
+    </fragment>
 
 </navigation>

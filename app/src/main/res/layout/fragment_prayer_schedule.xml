@@ -1,525 +1,519 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroundColor">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:elevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="Salat"
+            type="id.buhankita.catatanramadhan.data.model.jadwal.ScheduleResponse" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <variable
+            name="sharedViewModel"
+            type="id.buhankita.catatanramadhan.ui.main.viewmodel.SharedViewModel" />
+    </data>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_schedule"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                android:layout_height="match_parent">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:src="@drawable/img_user"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_schedule"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:elevation="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/tvGreaating"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/greeting"
-                android:textColor="@color/lightGray"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/tvName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageProfile"
-                app:layout_constraintTop_toTopOf="@+id/imageProfile"
-                app:layout_constraintVertical_bias="1.0" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/img_user"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
-                android:text="Muhammad Ariananda"
-                android:textColor="@color/textHead"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageProfile" />
+                <TextView
+                    android:id="@+id/tvGreaating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/greeting"
+                    android:textColor="@color/lightGray"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toTopOf="@+id/tvName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageProfile"
+                    app:layout_constraintTop_toTopOf="@+id/imageProfile"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/login"
+                    android:textStyle="bold"
+                    android:textColor="@color/textHead"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageProfile" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/bg_gradient"
-        app:layout_constraintBottom_toTopOf="@+id/cv_prayer_schedule"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_prayer_information"
+            android:layout_width="0dp"
+            android:layout_height="125dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_prayer_information"
-        android:layout_width="0dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/txtNextPrayer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/next_prayer"
+                    android:textColor="@color/green_basic"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txtNextPrayer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/next_prayer"
-                android:textColor="@color/green_basic"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/time_prayer"
+                    android:textColor="@color/textHead"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtNextPrayer" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/time_prayer"
-                android:textColor="@color/textHead"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtNextPrayer" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/left_time"
+                    android:textColor="@color/lightGray"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mosque"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/left_time"
-                android:textColor="@color/lightGray"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/mosque"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:layout_constraintVertical_bias="0.0" />
+                <ImageView
+                    android:id="@+id/mosque"
+                    android:layout_width="118dp"
+                    android:layout_height="101dp"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/img_mosque"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/mosque"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/img_mosque"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_prayer_schedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_prayer_information"
+            app:layout_constraintVertical_bias="0.0">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_prayer_schedule"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_prayer_information"
-        app:layout_constraintVertical_bias="0.0">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="16dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="16dp" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="16dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="16dp" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:text="@{Salat.data.date.readable}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/icLeft"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrow_left"
-                app:layout_constraintBottom_toBottomOf="@+id/tvDateHijr"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tvDate" />
+                <TextView
+                    android:id="@+id/tvDateHijr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:textColor="@color/lightGray"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
-            <ImageView
-                android:id="@+id/icRight"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrow_right"
-                app:layout_constraintBottom_toBottomOf="@+id/tvDateHijr"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toTopOf="@+id/tvDate" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/imsak" />
 
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="@string/date"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/icRight"
-                app:layout_constraintStart_toEndOf="@+id/icLeft"
-                app:layout_constraintTop_toTopOf="parent" />
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/subuh" />
 
-            <TextView
-                android:id="@+id/tvDateHijr"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/date_hijr"
-                android:textColor="@color/lightGray"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/icRight"
-                app:layout_constraintStart_toEndOf="@+id/icLeft"
-                app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/dzuhur" />
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightGray"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/imsak" />
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/ashar" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightGray"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/subuh" />
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightGray"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/magrip" />
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightGray"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/dzuhur" />
+                <TextView
+                    android:id="@+id/imsak"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/imsak"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_imsak"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDateHijr" />
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightGray"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/ashar" />
+                <TextView
+                    android:id="@+id/subuh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/fajr"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_subuh"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
 
-            <View
-                android:id="@+id/view5"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightGray"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/magrip" />
+                <TextView
+                    android:id="@+id/dzuhur"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/dzuhur"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_dzuhur"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-            <TextView
-                android:id="@+id/imsak"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="50dp"
-                android:text="@string/imsak"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_imsak"
-                app:layout_constraintTop_toBottomOf="@+id/tvDateHijr" />
+                <TextView
+                    android:id="@+id/ashar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/ashar"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_ashar"
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-            <TextView
-                android:id="@+id/subuh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/fajr"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_subuh"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                <TextView
+                    android:id="@+id/magrip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/magrib"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_magrib"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
 
-            <TextView
-                android:id="@+id/dzuhur"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/dzuhur"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_dzuhur"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                <TextView
+                    android:id="@+id/isya"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/isya"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                    app:layout_constraintStart_toEndOf="@+id/ic_isya"
+                    app:layout_constraintTop_toBottomOf="@+id/view5"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/ashar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/ashar"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_ashar"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                <TextView
+                    android:id="@+id/tvImsak"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.imsak}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/imsak" />
 
-            <TextView
-                android:id="@+id/magrip"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/magrib"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_magrib"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                <TextView
+                    android:id="@+id/tvSubuh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.fajr}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
 
-            <TextView
-                android:id="@+id/isya"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/isya"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
-                app:layout_constraintStart_toEndOf="@+id/ic_isya"
-                app:layout_constraintTop_toBottomOf="@+id/view5"
-                app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/tvDzuhur"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.dhuhr}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-            <TextView
-                android:id="@+id/tvImsak"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/tvDateHijr" />
+                <TextView
+                    android:id="@+id/tvAshar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.asr}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-            <TextView
-                android:id="@+id/tvSubuh"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                <TextView
+                    android:id="@+id/tvMagrib"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.maghrib}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@+id/view4" />
 
-            <TextView
-                android:id="@+id/tvDzuhur"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/view2" />
+                <TextView
+                    android:id="@+id/tvIsya"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="end"
+                    android:text="@{Salat.data.timings.isha}"
+                    android:textColor="@color/textHead"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
 
-            <TextView
-                android:id="@+id/tvAshar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/view3" />
+                <ImageView
+                    android:id="@+id/ic_imsak"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/imsak"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/imsak"
+                    app:srcCompat="@drawable/ic_imsak" />
 
-            <TextView
-                android:id="@+id/tvMagrib"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                <ImageView
+                    android:id="@+id/ic_subuh"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/subuh"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/subuh"
+                    app:srcCompat="@drawable/ic_subuh" />
 
-            <TextView
-                android:id="@+id/tvIsya"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="end"
-                android:text="TextView"
-                android:textColor="@color/textHead"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/view5" />
+                <ImageView
+                    android:id="@+id/ic_dzuhur"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/dzuhur"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/dzuhur"
+                    app:srcCompat="@drawable/ic_dzuhur" />
 
-            <androidx.constraintlayout.widget.Group
-                android:id="@+id/prayerSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/ic_ashar"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/ashar"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/ashar"
+                    app:srcCompat="@drawable/ic_ashar" />
 
-            <ImageView
-                android:id="@+id/ic_imsak"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/imsak"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/imsak"
-                app:srcCompat="@drawable/ic_imsak" />
+                <ImageView
+                    android:id="@+id/ic_magrib"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/magrip"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/magrip"
+                    app:srcCompat="@drawable/ic_magrib" />
 
-            <ImageView
-                android:id="@+id/ic_subuh"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/subuh"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/subuh"
-                app:srcCompat="@drawable/ic_subuh" />
+                <ImageView
+                    android:id="@+id/ic_isya"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:tint="@color/textHead"
+                    app:layout_constraintBottom_toBottomOf="@+id/isya"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/isya"
+                    app:srcCompat="@drawable/ic_isya" />
 
-            <ImageView
-                android:id="@+id/ic_dzuhur"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/dzuhur"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/dzuhur"
-                app:srcCompat="@drawable/ic_dzuhur" />
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isLoading="@{sharedViewModel.loadingData}"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/ic_ashar"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/ashar"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/ashar"
-                app:srcCompat="@drawable/ic_ashar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/ic_magrib"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/magrip"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/magrip"
-                app:srcCompat="@drawable/ic_magrib" />
-
-            <ImageView
-                android:id="@+id/ic_isya"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:tint="@color/textHead"
-                app:layout_constraintBottom_toBottomOf="@+id/isya"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/isya"
-                app:srcCompat="@drawable/ic_isya" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

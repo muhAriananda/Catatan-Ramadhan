@@ -5,24 +5,17 @@ import androidx.lifecycle.liveData
 import id.buhankita.catatanramadhan.data.repository.PrayerScheduleRepository
 import id.buhankita.catatanramadhan.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import java.lang.Exception
 
 class PrayerScheduleViewModel(private val repository: PrayerScheduleRepository) : ViewModel() {
 
-    fun getPrayerSchedule(date: String, latitude: Double, longitude: Double) =
+    fun getPayerSchedule(date: String, latitude: Double, longitude: Double) =
         liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
-                emit(
-                    Resource.success( data = repository.getPrayerSchedule(
-                            date,
-                            latitude,
-                            longitude
-                        )
-                    )
-                )
+                emit(Resource.success(data = repository.getPrayerSchedule(date,latitude, longitude).body()))
             } catch (exception: Exception) {
-                emit(Resource.error(data = null, msg = exception.message ?: "Error"))
+                emit(Resource.error(data = null, msg = exception.message ?: "Error Occurred!"))
             }
         }
-
 }

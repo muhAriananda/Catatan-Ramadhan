@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-        val navigation = findNavController(R.id.fragment_container_home)
+        val navigation = findNavController(R.id.nav_host_home)
         bottomNavigation.setupWithNavController(navigation)
     }
 }

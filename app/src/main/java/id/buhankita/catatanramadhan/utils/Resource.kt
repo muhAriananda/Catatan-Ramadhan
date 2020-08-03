@@ -1,11 +1,6 @@
 package id.buhankita.catatanramadhan.utils
 
-data class Resource<out T> (
-    val status: Status,
-    val data: T?,
-    val message: String?
-) {
-
+data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     companion object {
         fun <T> success(data: T?): Resource<T> {
             return Resource(Status.SUCCESS, data, null)

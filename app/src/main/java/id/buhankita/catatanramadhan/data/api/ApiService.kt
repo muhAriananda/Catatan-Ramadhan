@@ -1,7 +1,9 @@
 package id.buhankita.catatanramadhan.data.api
 
 import id.buhankita.catatanramadhan.data.model.doa.Doa
-import id.buhankita.catatanramadhan.data.model.jadwal.Salat
+import id.buhankita.catatanramadhan.data.model.doa.DoaResponse
+import id.buhankita.catatanramadhan.data.model.jadwal.ScheduleResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,9 +16,9 @@ interface ApiService {
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("method") method: Int = 11
-    ) : Salat
+    ) : Response<ScheduleResponse>
 
     @GET("1")
-    suspend fun getDoa() : List<Doa>
+    suspend fun getDoa() : Response<DoaResponse>
 
 }
