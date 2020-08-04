@@ -28,13 +28,14 @@ class RegisterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        val name = edt_name.editText.toString()
-        val email = edt_email_register.editText.toString()
-        val password = edt_password_register.editText.toString()
+        auth = FirebaseAuth.getInstance()
 
         //Register Proses
         btn_register.setOnClickListener {
+            val name = edt_name.editText?.text.toString()
+            val email = edt_email_register.editText?.text.toString()
+            val password = edt_password_register.editText?.text.toString()
+
             isLoading(true)
             registerUser(name, email, password)
         }
@@ -47,14 +48,13 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser(name: String, email: String, password: String) {
-        auth = FirebaseAuth.getInstance()
-
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                updateUI()
                 updateUser(name)
             } else {
                 isLoading(false)
-                Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "cek", Toast.LENGTH_LONG).show()
             }
         }
     }

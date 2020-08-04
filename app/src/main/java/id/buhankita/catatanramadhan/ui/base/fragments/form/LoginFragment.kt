@@ -2,6 +2,7 @@ package id.buhankita.catatanramadhan.ui.base.fragments.form
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import id.buhankita.catatanramadhan.R
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -28,11 +31,14 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //Login Process
-        val email = edt_email.editText.toString()
-        val password = edt_password.editText.toString()
+        auth = Firebase.auth
 
+        //Login Process
         btn_login.setOnClickListener {
+            val email= edt_email.editText?.text.toString()
+            val password = edt_password.editText?.text.toString()
+
+            Log.d("TAG", "the email is $email and $password")
             isLoading(true)
             loginUser(email, password)
         }
@@ -50,15 +56,14 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUser(email: String, password: String) {
-        auth = FirebaseAuth.getInstance()
-
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {task ->
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity()) {task ->
             if (task.isSuccessful) {
                 Toast.makeText(requireContext(), "Successfully Logged In", Toast.LENGTH_LONG).show()
                 updateUI()
             } else {
                 isLoading(false)
-                Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_LONG).show()
+                Log.d("TAG", task.exception?.message)
+                Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_LONG).show()
             }
         }
     }
