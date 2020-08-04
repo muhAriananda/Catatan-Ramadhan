@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -21,7 +20,6 @@ import id.buhankita.catatanramadhan.data.api.RetrofitInstance
 import id.buhankita.catatanramadhan.databinding.FragmentPrayerScheduleBinding
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.main.viewmodel.PrayerScheduleViewModel
-import id.buhankita.catatanramadhan.ui.main.viewmodel.SharedViewModel
 import id.buhankita.catatanramadhan.ui.main.viewmodel.ViewModelFactory
 import id.buhankita.catatanramadhan.utils.Constant.RC_LOCATION_PERM
 import id.buhankita.catatanramadhan.utils.Status.*
@@ -36,7 +34,6 @@ class PrayerScheduleFragment :
     EasyPermissions.PermissionCallbacks {
 
     private lateinit var viewModel: PrayerScheduleViewModel
-    private lateinit var sharedViewModel: SharedViewModel
 
     private lateinit var fuseLocationClient: FusedLocationProviderClient
 
@@ -51,8 +48,6 @@ class PrayerScheduleFragment :
 
         //Data Binding
         _binding = FragmentPrayerScheduleBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
 
         return binding.root
 
@@ -62,7 +57,10 @@ class PrayerScheduleFragment :
         super.onActivityCreated(savedInstanceState)
 
         //For set Toolbar
-        ((activity as HomeActivity)).setSupportActionBar(toolbar_schedule)
+        ((activity as HomeActivity)).apply {
+            setSupportActionBar(toolbar_schedule)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
 
         //Setup Location Permission
         locationTask()
@@ -72,13 +70,16 @@ class PrayerScheduleFragment :
 
         //Setup Observer
         setupPrayerSchedule()
+
+        //
+        refreshTask()
     }
 
     //setup ViewModel
     private fun setupViewModel() {
         val factory = ViewModelFactory(ApiHelper(RetrofitInstance.apiSalat))
-        viewModel = ViewModelProvider(requireActivity(), factory)[PrayerScheduleViewModel::class.java]
-        sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        viewModel =
+            ViewModelProvider(requireActivity(), factory)[PrayerScheduleViewModel::class.java]
     }
 
     //Observer
@@ -100,7 +101,7 @@ class PrayerScheduleFragment :
                     .observe(viewLifecycleOwner, Observer { resource ->
                         when (resource.status) {
                             SUCCESS -> {
-                                sharedViewModel.isDataLoading(false)
+                                swipeToRefresh.isRefreshing = false
                                 resource.data?.let { schedule ->
                                     binding.salat = schedule
 
@@ -113,7 +114,7 @@ class PrayerScheduleFragment :
                             }
 
                             ERROR -> {
-                                sharedViewModel.isDataLoading(false)
+                                swipeToRefresh.isRefreshing = false
                                 Toast.makeText(
                                     requireContext(),
                                     resource.message,
@@ -122,7 +123,7 @@ class PrayerScheduleFragment :
                             }
 
                             LOADING -> {
-                                sharedViewModel.isDataLoading(true)
+                                swipeToRefresh.isRefreshing = true
                             }
                         }
                     })
@@ -162,6 +163,12 @@ class PrayerScheduleFragment :
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.d("TAG", "onPermissionsGranted: $requestCode : ${perms.size}")
+    }
+
+    private fun refreshTask() {
+        swipeToRefresh.setOnRefreshListener {
+            setupPrayerSchedule()
+        }
     }
 
     //Destroy view

@@ -36,5 +36,7 @@
     <string name="forgot_password">Forgot \nPassword</string>
     <string name="message_forget_password">To reset your password, please enter your email, press the button and check your email to follow the instruction</string>
     <string name="send_request">send request</string>
+    <string name="prayer_detail">Prayer Detail</string>
+    <string name="back">Back</string>
 
 </resources>

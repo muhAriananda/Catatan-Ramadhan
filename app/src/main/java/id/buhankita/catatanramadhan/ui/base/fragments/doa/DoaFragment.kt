@@ -15,7 +15,6 @@ import id.buhankita.catatanramadhan.databinding.FragmentDoaBinding
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.main.adapter.DoaAdapter
 import id.buhankita.catatanramadhan.ui.main.viewmodel.DoaViewModel
-import id.buhankita.catatanramadhan.ui.main.viewmodel.SharedViewModel
 import id.buhankita.catatanramadhan.ui.main.viewmodel.ViewModelFactory
 import id.buhankita.catatanramadhan.utils.Status.*
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
@@ -23,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_doa.*
 
 class DoaFragment : Fragment() {
 
-    private lateinit var sharedViewModel: SharedViewModel
     private lateinit var viewModel: DoaViewModel
 
     private var _binding: FragmentDoaBinding? = null
@@ -38,8 +36,6 @@ class DoaFragment : Fragment() {
 
         //Set Data Binding
         _binding = FragmentDoaBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.sharedViewModel = sharedViewModel
 
         return binding.root
     }
@@ -59,29 +55,31 @@ class DoaFragment : Fragment() {
         //Set RecyclerView
         setupRecyclerView()
 
+        //Refresh
+        refreshTask()
+
     }
 
     private fun setupViewModel() {
         val factory = ViewModelFactory(ApiHelper(RetrofitInstance.apiDoa))
         viewModel = ViewModelProvider(requireActivity(), factory)[DoaViewModel::class.java]
-        sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
     }
 
     private fun setupDoaObserver() {
         viewModel.getAllDoa().observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
                 SUCCESS -> {
-                    sharedViewModel.isDataLoading(false)
+                    swipeToRefresh.isRefreshing = false
                     resource.data?.let { doa -> mDoaAdapter.setData(doa) }
                 }
 
                 ERROR -> {
-                    sharedViewModel.isDataLoading(false)
+                    swipeToRefresh.isRefreshing = false
                     Toast.makeText(requireContext(), resource.message, Toast.LENGTH_LONG).show()
                 }
 
                 LOADING -> {
-                    sharedViewModel.isDataLoading(true)
+                    swipeToRefresh.isRefreshing = true
                 }
             }
         })
@@ -99,7 +97,13 @@ class DoaFragment : Fragment() {
     private fun setupToolbar() {
         ((activity as HomeActivity)).apply {
             setSupportActionBar(toolbar_doa)
-            supportActionBar?.title = "Doa"
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+    }
+
+    private fun refreshTask() {
+        swipeToRefresh.setOnRefreshListener {
+            setupDoaObserver()
         }
     }
 

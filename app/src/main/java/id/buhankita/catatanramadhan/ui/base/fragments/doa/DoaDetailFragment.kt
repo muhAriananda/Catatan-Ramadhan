@@ -40,13 +40,7 @@ class DoaDetailFragment : Fragment() {
     private fun setupToolbar() {
         ((requireActivity() as HomeActivity)).apply {
             setSupportActionBar(toolbar)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            supportActionBar?.title = "Doa"
-        }
-
-        toolbar.setNavigationOnClickListener {
-            it.findNavController().navigate(R.id.action_fragmentDetailDoa_to_doaFragment)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
         }
     }
 
