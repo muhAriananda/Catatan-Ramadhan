@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import id.buhankita.catatanramadhan.R
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 
@@ -26,19 +28,26 @@ class ForgotPasswordFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val email = edt_email_forgot.editText.toString()
-
+        //send request
         btn_send_request.setOnClickListener {
-            sendRequestEmail(email)
+            val email = edt_email_forgot.editText.toString()
+
+            if (email.isEmpty()) {
+                edt_email_forgot.error = resources.getString(R.string.error_message_field)
+            } else {
+                edt_email_forgot.error = null
+                sendRequestEmail(email)
+            }
         }
 
+        //to login
         tv_back.setOnClickListener {
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
         }
     }
 
     private fun sendRequestEmail(email: String) {
-        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
         auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if (task.isSuccessful) {

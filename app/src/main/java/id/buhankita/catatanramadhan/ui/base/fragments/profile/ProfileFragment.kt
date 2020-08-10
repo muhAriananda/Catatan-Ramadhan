@@ -1,4 +1,4 @@
-package id.buhankita.catatanramadhan.ui.base.fragments.form
+package id.buhankita.catatanramadhan.ui.base.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -22,12 +22,11 @@ import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.main.viewmodel.PrayerScheduleViewModel
 import id.buhankita.catatanramadhan.ui.main.viewmodel.ViewModelFactory
 import id.buhankita.catatanramadhan.utils.Constant.RC_LOCATION_PERM
+import id.buhankita.catatanramadhan.utils.DateHelper.getCurrentDate
 import id.buhankita.catatanramadhan.utils.Status.*
 import kotlinx.android.synthetic.main.fragment_prayer_schedule.*
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
-import java.text.SimpleDateFormat
-import java.util.*
 
 class PrayerScheduleFragment :
     Fragment(),
@@ -83,12 +82,10 @@ class PrayerScheduleFragment :
     }
 
     //Observer
-    @SuppressLint("MissingPermission", "SimpleDateFormat")
+    @SuppressLint("MissingPermission", "SetTextI18n")
     private fun setupPrayerSchedule() {
 
-        val date = Calendar.getInstance().time
-        val sdf = SimpleDateFormat("dd-MM-yyyy")
-        val currentDate = sdf.format(date)
+        val currentDate = getCurrentDate()
 
         fuseLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         fuseLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
@@ -109,7 +106,7 @@ class PrayerScheduleFragment :
                                     val month = schedule.data.date.hijri.month.en
                                     val year = schedule.data.date.hijri.year
 
-                                    binding.tvDateHijr.text = day + " " + month + " " + year
+                                    binding.tvDateHijr.text = "$day $month $year"
                                 }
                             }
 

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import id.buhankita.catatanramadhan.R
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -28,16 +30,31 @@ class RegisterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        auth = FirebaseAuth.getInstance()
+
+        auth = Firebase.auth
 
         //Register Proses
         btn_register.setOnClickListener {
             val name = edt_name.editText?.text.toString()
             val email = edt_email_register.editText?.text.toString()
             val password = edt_password_register.editText?.text.toString()
+            var noError = false
 
-            isLoading(true)
-            registerUser(name, email, password)
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                edt_name.error = resources.getString(R.string.error_message_field)
+                edt_email_register.error = resources.getString(R.string.error_message_field)
+                edt_password_register.error = resources.getString(R.string.error_message_field)
+            } else {
+                edt_name.error = null
+                edt_email_register.error = null
+                edt_password_register.error = null
+                noError = true
+            }
+
+            if (noError) {
+                isLoading(true)
+                registerUser(name, email, password)
+            }
         }
 
         //to Login
@@ -50,7 +67,6 @@ class RegisterFragment : Fragment() {
     private fun registerUser(name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                updateUI()
                 updateUser(name)
             } else {
                 isLoading(false)

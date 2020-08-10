@@ -31,16 +31,26 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        auth = Firebase.auth
-
         //Login Process
         btn_login.setOnClickListener {
-            val email= edt_email.editText?.text.toString()
+            val email = edt_email.editText?.text.toString()
             val password = edt_password.editText?.text.toString()
+            var noError = false
 
-            Log.d("TAG", "the email is $email and $password")
-            isLoading(true)
-            loginUser(email, password)
+            if (email.isEmpty() || password.isEmpty()) {
+                edt_email.error = resources.getString(R.string.error_message_field)
+                edt_password.error = resources.getString(R.string.error_message_field)
+            } else {
+                edt_email.error = null
+                edt_password.error = null
+                noError = true
+            }
+
+            if (noError) {
+                isLoading(true)
+                loginUser(email, password)
+            }
+
         }
 
         //to Register
@@ -56,14 +66,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginUser(email: String, password: String) {
+        auth = Firebase.auth
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(requireActivity()) {task ->
             if (task.isSuccessful) {
                 Toast.makeText(requireContext(), "Successfully Logged In", Toast.LENGTH_LONG).show()
                 updateUI()
             } else {
                 isLoading(false)
-                Log.d("TAG", task.exception?.message)
-                Toast.makeText(requireContext(), task.exception.toString(), Toast.LENGTH_LONG).show()
+                Log.d("TAG", task.exception.toString())
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
             }
         }
     }
