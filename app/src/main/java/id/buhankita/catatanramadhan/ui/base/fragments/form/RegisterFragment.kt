@@ -70,7 +70,7 @@ class RegisterFragment : Fragment() {
                 updateUser(name)
             } else {
                 isLoading(false)
-                Toast.makeText(requireContext(), "cek", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -88,7 +88,7 @@ class RegisterFragment : Fragment() {
                 updateUI()
             } else {
                 isLoading(false)
-                Toast.makeText(requireContext(), "Registration Failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG).show()
             }
         }
     }

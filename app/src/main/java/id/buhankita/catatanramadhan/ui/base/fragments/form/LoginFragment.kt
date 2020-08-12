@@ -74,7 +74,7 @@ class LoginFragment : Fragment() {
             } else {
                 isLoading(false)
                 Log.d("TAG", task.exception.toString())
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_LONG).show()
             }
         }
     }

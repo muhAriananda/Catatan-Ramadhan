@@ -15,5 +15,6 @@
     <color name="textHead">#3C4D62</color>
 
     <color name="backgroundColor">#F8FAFA</color>
+    <color name="opacityBackground">#40000000</color>
     
 </resources>

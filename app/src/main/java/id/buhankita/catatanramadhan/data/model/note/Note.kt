@@ -5,14 +5,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Note(
-    val date: String? = null,
-    val puasa: Boolean? = null,
-    val subuh: Boolean? = null,
-    val dzhuhur: Boolean? = null,
-    val ashar: Boolean? = null,
-    val magrib: Boolean? = null,
-    val isya: Boolean? = null,
-    val juz: Int? = null,
-    val surah: String? = null,
-    val ayat: String? = null
+    var date: String? = null,
+    var puasa: Boolean = false,
+    var subuh: Boolean = false,
+    var dzhuhur: Boolean = false,
+    var ashar: Boolean = false,
+    var magrib: Boolean = false,
+    var isya: Boolean = false,
+    var juz: Int? = null,
+    var surah: String? = null,
+    var ayat: Int? = null
 ): Parcelable

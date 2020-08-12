@@ -9,4 +9,9 @@ object Constant {
     const val SECRET_KEY = "$2b$10$9lkuvpAsO3u/R0wA0urh6eQU1g9z.aOeVfVFDIng6uPy45bh7Dd8S"
 
     const val RC_LOCATION_PERM = 123
+
+    const val PATH_USER = "users"
+    const val PATH_NOTE = "notes"
+    const val PATH_DATE = "date"
+
 }
