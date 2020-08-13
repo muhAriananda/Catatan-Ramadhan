@@ -17,12 +17,14 @@ import com.google.android.gms.location.LocationServices
 import id.buhankita.catatanramadhan.R
 import id.buhankita.catatanramadhan.data.api.ApiHelper
 import id.buhankita.catatanramadhan.data.api.RetrofitInstance
+import id.buhankita.catatanramadhan.data.model.jadwal.ScheduleResponse
 import id.buhankita.catatanramadhan.databinding.FragmentPrayerScheduleBinding
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.main.viewmodel.PrayerScheduleViewModel
 import id.buhankita.catatanramadhan.ui.main.viewmodel.ViewModelFactory
 import id.buhankita.catatanramadhan.utils.Constant.RC_LOCATION_PERM
 import id.buhankita.catatanramadhan.utils.DateHelper.getCurrentDate
+import id.buhankita.catatanramadhan.utils.DateHelper.getCurrentTime
 import id.buhankita.catatanramadhan.utils.Status.*
 import kotlinx.android.synthetic.main.fragment_prayer_schedule.*
 import pub.devrel.easypermissions.AppSettingsDialog
@@ -101,6 +103,7 @@ class PrayerScheduleFragment :
                                 swipeToRefresh.isRefreshing = false
                                 resource.data?.let { schedule ->
                                     binding.salat = schedule
+                                    setupDashboardSchedule(schedule)
 
                                     val day = schedule.data.date.hijri.day
                                     val month = schedule.data.date.hijri.month.en
@@ -127,6 +130,37 @@ class PrayerScheduleFragment :
             }
         }
 
+    }
+
+    private fun setupDashboardSchedule(schedule: ScheduleResponse) {
+        val subuh = schedule.data.timings.Fajr
+        val dzuhur = schedule.data.timings.Dhuhr
+        val ashar = schedule.data.timings.Asr
+        val magrib = schedule.data.timings.Maghrib
+        val isya = schedule.data.timings.Isha
+        val current = getCurrentTime()
+
+        if (current > isya || current < subuh) {
+            tv_ds_prayer.text = getString(R.string.fajr)
+            tv_ds_time.text = subuh
+
+        } else if (current > subuh && current < dzuhur) {
+            tv_ds_prayer.text = getString(R.string.dzuhur)
+            tv_ds_time.text = dzuhur
+
+        } else if (current > dzuhur && current < ashar) {
+            tv_ds_prayer.text = getString(R.string.ashar)
+            tv_ds_time.text = ashar
+
+        } else if (current > ashar && current < magrib) {
+            tv_ds_prayer.text = getString(R.string.magrib)
+            tv_ds_time.text = magrib
+
+        } else if (current > magrib && current < isya) {
+            tv_ds_prayer.text = getString(R.string.isya)
+            tv_ds_time.text = isya
+
+        }
     }
 
     //Setup permission location
