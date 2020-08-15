@@ -16,7 +16,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         android:focusable="true"
         android:clickable="true"
         android:sendDataDetailDoa="@{Doa}">
@@ -32,22 +33,22 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:tint="@color/green_basic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_border" />
+                app:srcCompat="@drawable/ic_border"
+                app:tint="@color/green_basic" />
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:tint="@color/lightGray"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvDoa"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvDoa"
-                app:srcCompat="@drawable/ic_arrow_right" />
+                app:srcCompat="@drawable/ic_arrow_right"
+                app:tint="@color/lightGray" />
 
             <TextView
                 android:id="@+id/tvNumber"
@@ -70,6 +71,7 @@
                 android:maxLines="1"
                 android:text="@{Doa.nama}"
                 android:textColor="@color/textHead"
+                android:fontFamily="@font/opensans_medium"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

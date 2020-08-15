@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import id.buhankita.catatanramadhan.R
 import id.buhankita.catatanramadhan.data.model.note.Note
+import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.base.activities.NoteAddUpdateActivity
 import id.buhankita.catatanramadhan.utils.Constant.PATH_DATE
 import id.buhankita.catatanramadhan.utils.Constant.PATH_NOTE
@@ -52,6 +53,12 @@ class ListNoteFragment : Fragment() {
 
 
     private fun initView() {
+
+        ((activity as HomeActivity)).apply {
+            setSupportActionBar(toolbar_note)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+
         btn_add_note.setOnClickListener {
             val intent = Intent(activity, NoteAddUpdateActivity::class.java)
             activity?.startActivity(intent)
@@ -90,6 +97,18 @@ class ListNoteFragment : Fragment() {
                         putExtra(NoteAddUpdateActivity.EXTRA_NOTE, model)
                     }
                     context?.startActivity(intent)
+                }
+            }
+
+            override fun onDataChanged() {
+                super.onDataChanged()
+                if (itemCount == 0) {
+                    img_empty.visibility = View.VISIBLE
+                    tv_empty.visibility = View.VISIBLE
+
+                } else {
+                    img_empty.visibility = View.INVISIBLE
+                    tv_empty.visibility = View.INVISIBLE
                 }
             }
 

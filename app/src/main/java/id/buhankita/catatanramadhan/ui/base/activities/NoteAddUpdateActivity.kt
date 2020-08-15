@@ -221,4 +221,9 @@ class NoteAddUpdateActivity : AppCompatActivity() {
             progressBar.visibility = View.INVISIBLE
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
 }

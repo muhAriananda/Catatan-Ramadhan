@@ -2,23 +2,26 @@ package id.buhankita.catatanramadhan.ui.base.fragments.shcedule
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import id.buhankita.catatanramadhan.R
 import id.buhankita.catatanramadhan.data.api.ApiHelper
 import id.buhankita.catatanramadhan.data.api.RetrofitInstance
 import id.buhankita.catatanramadhan.data.model.jadwal.ScheduleResponse
 import id.buhankita.catatanramadhan.databinding.FragmentPrayerScheduleBinding
+import id.buhankita.catatanramadhan.ui.base.activities.FormActivity
 import id.buhankita.catatanramadhan.ui.base.activities.HomeActivity
 import id.buhankita.catatanramadhan.ui.main.viewmodel.PrayerScheduleViewModel
 import id.buhankita.catatanramadhan.ui.main.viewmodel.ViewModelFactory
@@ -34,8 +37,10 @@ class PrayerScheduleFragment :
     Fragment(),
     EasyPermissions.PermissionCallbacks {
 
-    private lateinit var viewModel: PrayerScheduleViewModel
+    private val auth = Firebase.auth
+    private val user = auth.currentUser
 
+    private lateinit var viewModel: PrayerScheduleViewModel
     private lateinit var fuseLocationClient: FusedLocationProviderClient
 
     private var _binding: FragmentPrayerScheduleBinding? = null
@@ -46,6 +51,8 @@ class PrayerScheduleFragment :
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        setHasOptionsMenu(true)
 
         //Data Binding
         _binding = FragmentPrayerScheduleBinding.inflate(inflater, container, false)
@@ -71,6 +78,9 @@ class PrayerScheduleFragment :
 
         //Setup Observer
         setupPrayerSchedule()
+
+        //
+        displayName()
 
         //
         refreshTask()
@@ -194,6 +204,21 @@ class PrayerScheduleFragment :
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
         Log.d("TAG", "onPermissionsGranted: $requestCode : ${perms.size}")
+    }
+
+    private fun displayName() {
+        if (user != null) {
+            user.let {
+                binding.tvName.text = it.displayName
+            }
+            binding.tvGreaating.text = getString(R.string.greetings)
+
+        } else {
+            binding.tvName.setOnClickListener {
+                val intent = Intent(activity, FormActivity::class.java)
+                activity?.startActivity(intent)
+            }
+        }
     }
 
     private fun refreshTask() {

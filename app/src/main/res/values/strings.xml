@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="greeting">Silahkan,</string>
-    <string name="next_prayer">Sholat selanjutnya</string>
+    <string name="next_prayer">Next Prayer:</string>
     <string name="imsak">Imsak</string>
     <string name="fajr">Subuh</string>
     <string name="dzuhur">Dzuhur</string>
@@ -22,7 +22,7 @@
     <string name="rationale_location">This app needs access to your location to know where you are.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="login">Login untuk masuk</string>
+    <string name="login_message">Login Untuk Masuk</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forget_your_password">Forget your password?</string>
@@ -40,6 +40,7 @@
     <string name="back">Back</string>
 
     <string name="error_message_field">Field can\'t be empty</string>
+    <string name="error_different_field">passwords do not match</string>
     <string name="login_required">Login is required to use this feature</string>
     <string name="date_label">Date</string>
     <string name="juz">Juz</string>
@@ -54,5 +55,15 @@
     <string name="add">Add</string>
 
     <string name="question_delete">Are you sure want to delete?</string>
+    <string name="prayer_schedule">Prayer Schedule</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="greetings">Assalamualaikum,</string>
+    <string name="profile_message">Still new to us, let\'s join. or are already familiar with us, please login.</string>
+    <string name="log_out">Log out</string>
+    <string name="change_name">Change Name</string>
+    <string name="change_password">Change Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="re_password">Re-password</string>
 
 </resources>
